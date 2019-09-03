@@ -1,0 +1,470 @@
+{
+	"name": "EXOL",
+	"scopeName": "source.exol",
+	"patterns": [
+		{
+			"match": "\\n",
+			"name": "meta.ending-space"
+		},
+		{
+			"begin": "^\\s*(\\{)\\s*(?i:(Locals?|Const|Variables))",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.section.begin.exol"
+				},
+				"2": {
+					"name": "entity.name.section.exol"
+				}
+
+			},
+			"end": "^\\s*\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.section.end.exol"
+				}
+			},
+			"name": "meta.section.variables.exol",
+			"contentName": "source.exol.variables",
+			"foldingStartMarker": "\\{\\s*",
+			"foldingStopMarker": "^\\s*\\}",
+			"scopeName": "source.exol.variables",
+			"patterns": [
+				
+				{
+					"include": "#variables"
+				},
+				{
+					"include": "#strings-and-comments"
+				}
+			]
+		},
+		{
+			"begin": "^\\s*(\\{)\\s*(?i:(Code))",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.section.begin.exol"
+				},
+				"2": {
+					"name": "entity.name.section.exol"
+				}
+
+			},
+			"end": "^\\s*\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.section.end.exol"
+				}
+			},
+			"name": "meta.section.code.exol",
+			"foldingStartMarker": "\\s*\\{\\s*(?i:Code)",
+			"foldingStopMarker": "^\\s*\\}",
+			"scopeName": "source.exol.code",
+			"patterns": [
+				{
+					"include": "#strings-and-comments"
+				},
+				{
+					"include": "#function"
+				},
+				{
+					"include": "#code"
+				}
+			]
+		},
+		{
+			"begin": "^(?i)\\s*(\\{)\\s*(Types)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.section.begin.exol"
+				},
+				"2": {
+					"name": "entity.name.section.exol"
+				}
+
+			},
+			"end": "^\\s*\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.section.end.exol"
+				}
+			},
+			"name": "meta.section.types.exol",
+			"foldingStartMarker": "\\{\\s*",
+			"foldingStopMarker": "^\\s*\\}",
+			"scopeName": "source.exol.types",
+			"patterns": [
+				{
+					"begin": "(?i)(StatType|FuncType)\\s+(\\w+)",
+					"end": "$",
+					"captures": {
+						"1": {
+							"name": "keyword.other.exol"
+						},
+						"2" : {
+							"name": "entity.name.type.exol"
+						}
+					},
+					"name": "meta.type.exol",
+					"patterns":[
+						{
+							"match": "(?<=\\W)(?i:([LXIRH$]|Ref))(?=\\s)",
+							"name": "support.type.exol"
+						}
+					]
+
+				},
+				{
+					"begin": "(?i)(struct|template)\\s+(\\w+)",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.exol"
+						},
+						"2": {
+							"name": "entity.name.type.exol"
+						}
+					},
+					"end": "(?i:EndStruct)",
+					"endCaptures": {
+						"0": {
+							"name": "storage.type.exol"
+						}
+					},
+					"name": "meta.type.exol",
+					"patterns": [
+						{
+							"match": "(Extends)\\s*(\\w+)",
+							"captures": {
+								"1": {
+									"name": "keyword.other.exol"
+								},
+								"2": {
+									"name": "entity.name.type.exol"
+								}
+							}
+						},
+						{
+							"match": "(?i:Construct|Extends)",
+							"name": "keyword.other.exol"
+						},
+						{					
+							"include": "#function"
+						},
+						{
+							"include": "#variables"
+						},
+						{
+							"include": "#strings-and-comments"
+						}
+					]
+				}
+			]
+		},
+		{
+			"begin": "(?i)^\\s*(\\{)\\s*(VPac|QPac|Proc|Text|Proc|Declarations)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.section.begin.exol"
+				},
+				"2": {
+					"name": "entity.name.section.exol"
+				}
+
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.section.end.exol"
+				}
+			},
+			"name": "meta.section.includes.exol",
+			"patterns":[
+				{
+					"include": "#strings-and-comments"
+				},
+				{
+					"match": "(?i:reg|mod|proj)\\b",
+					"name": "constant.language.exol"
+				}
+			]
+		},
+		{
+			"begin": "^(?i)\\s*(\\{)\\s*(TypeFile|Task|VPac|BPac)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.section.begin.exol"
+				},
+				"2": {
+					"name": "entity.name.section.exol"
+				}
+
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.section.end.exol"
+				}
+			},
+			"name": "meta.section.header.exol",
+			"patterns":[
+				{
+					"include": "#strings-and-comments"
+				},
+				{
+					"match": "(\\w+)\\s*(=)\\s*(.*?)\\s*(\\bm?s\\b)?\\s*(?=;|$)",
+					"captures": {
+						"1": {
+							"name": "variable.other.exol"
+						},
+						"2": {
+							"name": "punctuation.assignment.exol"
+						},
+						"3": {
+							"name": "constant.other.exol"
+						},
+						"4": {
+							"name": "keyword.other.exol"
+						}
+
+					}
+
+				}
+			]
+		},
+		{
+			"include": "#strings-and-comments"
+		}
+	],
+	"repository": {
+		"strings-and-comments": {
+			"patterns": [
+			{
+				"begin": "\"",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.begin.exol"
+					}
+				},
+				"end": "\"",
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.end.exol"
+					}
+				},
+				"name": "string.quoted.double.exol",
+				"patterns": [
+					{
+						"match": "\"\"",
+						"name": "constant.character.escape.apostrophe.exol"
+					}
+				]
+			},
+			{
+				"match": "-?\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",
+				"name": "constant.numeric.exol"
+			},
+			{
+				"begin": "(^[ \\t]+)?(?=;)",
+				"beginCaptures": {
+					"1": {
+						"name": "punctuation.whitespace.comment.leading.exol"
+					}
+				},
+				"end": "(?!\\G)",
+				"patterns": [
+					{
+						"begin": ";",
+						"beginCaptures": {
+							"0": {
+								"name": "punctuation.definition.character.comment.exol"
+							}
+						},
+						"end": "\\n",
+						"name": "comment.line.exol"
+					}
+				]
+			}
+		]
+		},
+		"round-brackets": {
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.section.round-brackets.begin.exol"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.round-brackets.end.exol"
+				}
+			},
+			"name": "meta.round-brackets",
+			"patterns": [
+				{
+					"include": "#strings-and-comments"
+				}
+			]
+		},
+		"variables": {	
+			"patterns":[
+				{
+					"captures": {
+						"1": {
+							"name": "keyword.other.exol"
+						},
+						"2": {
+							"name": "support.type.exol"
+						},
+						"3": {
+							"name": "support.type.exol"
+						},
+						"4": {
+							"name": "entity.name.type.exol"
+						},
+						"5": {
+							"name": "variable.other.exol"
+						}
+					},
+					"match": "(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*))\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"name": "meta.variable.other.exol"
+				},
+				{
+					"match": "\\b(?i:Ref)\\b",
+					"name": "variable.other.exol"
+				},
+				{
+					"match": "\\b(?i:Begin|End)\\b",
+					"name": "keyword.other.exol"
+				}
+			]
+		},
+		"code" : {
+			"patterns": [
+				{
+					"include": "#strings-and-comments"
+				},
+				{
+					"match": "\\b(?i:False!|Nothing|True!|Nan!)",
+					"name": "constant.language.exol"
+				},
+				{
+					"match": "[\\w\\$]+!",
+					"name": "support.variable.exol"
+				},
+				{
+					"match": "\\b(?i:Dec.?|Inc.?|Exit(?:If)?|OpC|BrkTsk|Delay|Swap.?|PID|Cmp.?|Mid.?|Abs|Cv.|Edge.?|[RS][LXIH$SR][VB]|BIT|MaxIndex|Join[XI]|[RIH](?:Low|High))((?:\\b|(?=\\s|\\()))",
+					"name": "support.function.exol"
+				},
+				{
+					"match": "\\b(?i:(?:End)?LockAccess|Set|From(?:Right|Left))\\b",
+					"name": "keyword.other.exol"
+				},
+				{
+					"match": "(?i:\\b(If|IfNot|Else|ElseIf|EndIf|While|EndWhile|EndLoop|CallStat|For|To|Each|Case|Select|EndSelect|Do|Until|(?:Up|Down)?Loop|From|Next|With|EndDo|CompileIf|Select|Switch|EndSwitch|Case|EndSelect|ElsePole|Pole|Case|ElseCase)\\b)",
+					"name": "keyword.control.exol"
+				},
+				{
+					"match": "(?i:\\b(Mod|And|Not|Or|Xor)\\b)",
+					"name": "keyword.operator.exol"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "storage.type.exol"
+						},
+						"2": {
+							"name": "support.type.exol"
+						},
+						"3": {
+							"name": "variable.other.exol"
+						}
+					},
+					"match": "(?i)(local)\\s*([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)\\s*([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"name": "variable.other.local.exol"
+				},
+				{
+					"match": "(?i:set\\b)",
+					"name":"keyword.operator.exol"
+				},
+				{
+					"match": "(?i:\\s*\\b(RO)\\b\\s*)",
+					"name": "storage.type.exol"
+				},
+				{
+					"match": "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)))))",
+					"name": "variable.other.exol"
+				},
+				{
+					"match": "^\\s*(?i:([LXIRH$]))(?=\\s)",
+					"captures": {
+						"1": {
+							"name": "support.type.exol"
+						}
+					}
+				}
+			]
+		},
+		"function": {
+			"patterns": [
+				{
+					"beginCaptures": {
+						"1": {
+							"name":"keyword.other.exol"
+						},
+						"2": {
+							"name": "entity.name.function.exol"
+						}
+					},
+					"begin": "^\\s*(?i)(DefStat)\\s+([a-zA-Z_]\\w*)",
+					"end": "(?i:EndStat)",
+					"endCaptures" : {
+						"0" : {
+							"name": "keyword.other.exol"
+						}
+					},
+					"name": "meta.function.stat.exol",
+					"patterns": [
+						{
+							"match": "(?i:EndFunc)",
+							"name": "invalid.exol"
+						},
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"beginCaptures": {
+						"1": {
+							"name":"keyword.other.exol"
+						},
+						"2": {
+							"name": "entity.name.function.exol"
+						}
+					},
+					"begin": "^\\s*(?i)(DefFunc)\\s+([a-zA-Z_]\\w*)",
+					"end": "(?i:EndFunc)",
+					"endCaptures" : {
+						"0" : {
+							"name": "keyword.other.exol"
+						}
+					},
+					"name": "meta.function.func.exol",
+					"patterns": [
+						{
+							"match": "(?i:EndStat)",
+							"name": "invalid.exol"
+						},
+						{
+							"include": "#code"
+						}
+					]
+				},		
+				{
+					"match": "(?i:DefFunc|DefStat|EndStat|EndFunc)",
+					"name": "keyword.other.exol"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,65 @@
+{
+	"UpLoop": {
+		"prefix": "Up",
+		"body": [
+			"UpLoop ${1:index} From ${2:lower} To ${3:upper}",
+			"\t$0",
+			"EndLoop"
+		]
+	},	
+	"If": {
+		"prefix": "If",
+		"body": [
+			"If ${1}",
+			"\t$0",
+			"EndIf"
+		]
+	},
+	"IfElse": {
+		"prefix": "IfE",
+		"body": [
+			"If ${1}",
+			"\t$2",
+			"Else",
+			"\t$3",
+			"EndIf"
+		]
+	},
+	"DownLoop": {
+		"prefix": "Dow",
+		"body": [
+			"DownLoop ${1:index} From ${2:lower} To ${3:upper}",
+			"\t$0",
+			"EndLoop"
+		]
+	},
+	"Statement": {
+		"prefix": [
+			"DefStat"
+		],
+		"body": [
+			"DefStat ${1:name}${2| , LockAccess|}",
+			"\t$0",
+			"EndStat"
+
+		]
+	},
+	"StatementWith": {
+		"prefix": "DefStatWith",
+		"body": [
+			"DefStat ${1:name} ${2/\\s*(\\w+)\\s*/With $1/}${3| , LockAccess|}",
+			"\t$0",
+			"EndStat"
+
+		]
+	},
+	"Select": {
+		"prefix": "Sele",
+		"body": [
+			"Select ${1:Property}",
+			"Case ${2:0}",
+			"\t$0",
+			"EndSelect"
+		]
+	}
+}

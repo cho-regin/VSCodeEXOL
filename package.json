@@ -1,0 +1,32 @@
+{
+	"name": "exol",
+	"displayName": "%displayName%",
+	"description": "%description%",
+	"repository": {
+		"type": "git",
+		"directory": "U:/Git_Root/VSCodeEXOL.git"
+	},
+	"version": "0.1.1",
+	"publisher": "regin",
+	"engines": { "vscode": "*" },
+	"contributes": {
+		"languages": [{
+			"id": "exol",
+			"extensions": [ ".tse", ".EXOLTypes", ".dpe" ],
+			"configuration": "./language-configuration.json"
+		},
+		{
+			"id": "ini",
+			"extensions": [ ".dir", ".exo" ]
+		}],
+		"grammars": [{
+			"language": "exol",
+			"scopeName": "source.exol",
+			"path": "./syntaxes/exol.json"
+		}],
+		"snippets": [{
+			"language": "exol",
+			"path": "./snippets/exol.json"
+		}]
+	}
+}
