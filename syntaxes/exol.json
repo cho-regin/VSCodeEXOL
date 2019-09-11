@@ -114,7 +114,7 @@
 
 				},
 				{
-					"begin": "(?i)(struct|template)\\s+(\\w+)",
+					"begin": "\\b(?i)(struct|template)\\s+(\\w+)",
 					"beginCaptures": {
 						"1": {
 							"name": "storage.type.exol"
@@ -123,7 +123,7 @@
 							"name": "entity.name.type.exol"
 						}
 					},
-					"end": "(?i:EndStruct)",
+					"end": "\\b(?i:EndStruct)\\b",
 					"endCaptures": {
 						"0": {
 							"name": "storage.type.exol"
@@ -160,7 +160,7 @@
 			]
 		},
 		{
-			"begin": "(?i)^\\s*(\\{)\\s*(VPac|QPac|Proc|Text|Proc|Declarations)",
+			"begin": "(?i)^\\s*(\\{)\\s*(VPac|QPac|APac|Proc|Text|Proc|Declarations)",
 			"beginCaptures": {
 				"1": {
 					"name": "punctuation.definition.section.begin.exol"
@@ -182,7 +182,7 @@
 					"include": "#strings-and-comments"
 				},
 				{
-					"match": "(?i:reg|mod|proj)\\b",
+					"match": "(?i:reg|mod|slib|proj)\\b",
 					"name": "constant.language.exol"
 				}
 			]
@@ -211,6 +211,7 @@
 				},
 				{
 					"match": "(\\w+)\\s*(=)\\s*(.*?)\\s*(\\bm?s\\b)?\\s*(?=;|$)",
+					"name": "meta.section.variable.exol",
 					"captures": {
 						"1": {
 							"name": "variable.other.exol"
@@ -325,12 +326,12 @@
 							"name": "variable.other.exol"
 						}
 					},
-					"match": "(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*))\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"match": "^\\s*(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*))\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
 					"name": "meta.variable.other.exol"
 				},
 				{
 					"match": "\\b(?i:Ref)\\b",
-					"name": "variable.other.exol"
+					"name": "support.type.exol"
 				},
 				{
 					"match": "\\b(?i:Begin|End)\\b",
@@ -352,7 +353,11 @@
 					"name": "support.variable.exol"
 				},
 				{
-					"match": "\\b(?i:Dec.?|Inc.?|Exit(?:If)?|OpC|BrkTsk|Delay|Swap.?|PID|Cmp.?|Mid.?|Abs|Cv.|Edge.?|[RS][LXIH$SR][VB]|BIT|MaxIndex|Join[XI]|[RIH](?:Low|High))((?:\\b|(?=\\s|\\()))",
+					"match": "\\b(?i:discard)\\b",
+					"name": "support.variable.exol"
+				},
+				{
+					"match": "\\b(?i:Dec.?|Inc.?|Exit(?:If)?|OpC|BrkTsk|Delay|Swap.?|PID|Cmp.?|Choose|Mid.?|Abs|Cv.|Edge.?|[RS][LXIH$SR][VB]|BIT|MaxIndex|Join[XI]|[RIH](?:Low|High))((?:\\b|(?=\\s|\\()))",
 					"name": "support.function.exol"
 				},
 				{
@@ -379,8 +384,8 @@
 							"name": "variable.other.exol"
 						}
 					},
-					"match": "(?i)(local)\\s*([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)\\s*([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
-					"name": "variable.other.local.exol"
+					"match": "(?i)(local)\\s+((?:ref\\s+)?[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"name": "meta.variable.other.local.exol"
 				},
 				{
 					"match": "(?i:set\\b)",
@@ -391,16 +396,12 @@
 					"name": "storage.type.exol"
 				},
 				{
-					"match": "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)))))",
-					"name": "variable.other.exol"
+					"match": "(?<=\\s|^)(?i)([LXIRH$]|AnyType|Ref)(?=\\s)",
+					"name": "support.type.exol"
 				},
 				{
-					"match": "^\\s*(?i:([LXIRH$]))(?=\\s)",
-					"captures": {
-						"1": {
-							"name": "support.type.exol"
-						}
-					}
+					"match": "([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"name": "variable.other.exol"
 				}
 			]
 		},
@@ -416,7 +417,7 @@
 						}
 					},
 					"begin": "^\\s*(?i)(DefStat)\\s+([a-zA-Z_]\\w*)",
-					"end": "(?i:EndStat)",
+					"end": "\\b(?i:EndStat)\\b",
 					"endCaptures" : {
 						"0" : {
 							"name": "keyword.other.exol"
@@ -425,7 +426,7 @@
 					"name": "meta.function.stat.exol",
 					"patterns": [
 						{
-							"match": "(?i:EndFunc)",
+							"match": "\\b(?i:EndFunc)\\b",
 							"name": "invalid.exol"
 						},
 						{
@@ -443,7 +444,7 @@
 						}
 					},
 					"begin": "^\\s*(?i)(DefFunc)\\s+([a-zA-Z_]\\w*)",
-					"end": "(?i:EndFunc)",
+					"end": "\\b(?i:EndFunc)\\b",
 					"endCaptures" : {
 						"0" : {
 							"name": "keyword.other.exol"
@@ -452,7 +453,7 @@
 					"name": "meta.function.func.exol",
 					"patterns": [
 						{
-							"match": "(?i:EndStat)",
+							"match": "\\b(?i:EndStat)\\b",
 							"name": "invalid.exol"
 						},
 						{
@@ -461,8 +462,22 @@
 					]
 				},		
 				{
-					"match": "(?i:DefFunc|DefStat|EndStat|EndFunc)",
+					"match": "\\b(?i:DefFunc|DefStat)",
 					"name": "keyword.other.exol"
+				},
+				{
+					"begin": "(?i)(?<=(?:EndStat|EndFunc))[ \\t]",
+					"end": "$",
+					"name": "meta.epilogue.func.exol",
+					"patterns": [
+						{
+							"match": "(?i:AnyType)",
+							"name": "support.type.exol"
+						},
+						{
+							"include": "#code"
+						}
+					]
 				}
 			]
 		}
