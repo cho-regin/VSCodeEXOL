@@ -4,7 +4,7 @@
 	"description": "%description%",
 	"repository": {
 		"type": "git",
-		"directory": "U:/Git_Root/VSCodeEXOL.git"
+		"url": "https://github.com/duralf/VSCodeEXOL"
 	},
 	"version": "0.1.1",
 	"publisher": "regin",
