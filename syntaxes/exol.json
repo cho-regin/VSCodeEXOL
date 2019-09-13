@@ -7,6 +7,15 @@
 			"name": "meta.ending-space"
 		},
 		{
+			"match": "^\\s*\\{\\s*(\\w+)\\s*}",
+			"captures": {
+				"1": {
+					"name": "entity.name.section.exol"
+				}
+			},
+			"name": "meta.section.empty.exol"
+		},
+		{
 			"begin": "^\\s*(\\{)\\s*(?i:(Locals?|Const|Variables))",
 			"beginCaptures": {
 				"1": {
