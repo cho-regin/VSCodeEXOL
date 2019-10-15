@@ -141,7 +141,7 @@
 					"name": "meta.type.exol",
 					"patterns": [
 						{
-							"match": "(Extends)\\s*(\\w+)",
+							"match": "(?i)(Extends)\\s*(\\w+)",
 							"captures": {
 								"1": {
 									"name": "keyword.other.exol"
@@ -335,7 +335,7 @@
 							"name": "variable.other.exol"
 						}
 					},
-					"match": "^\\s*(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*))\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"match": "^\\s*(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*(?:<[^>]*>+)?))\\s*(?:\\(\\))?\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
 					"name": "meta.variable.other.exol"
 				},
 				{
@@ -374,7 +374,7 @@
 					"name": "keyword.other.exol"
 				},
 				{
-					"match": "(?i:\\b(If|IfNot|Else|ElseIf|EndIf|While|EndWhile|EndLoop|CallStat|For|To|Each|Case|Select|EndSelect|Do|Until|(?:Up|Down)?Loop|From|Next|With|EndDo|CompileIf|Select|Switch|EndSwitch|Case|EndSelect|ElsePole|Pole|Case|ElseCase)\\b)",
+					"match": "(?i:\\b(If|IfNot|Else|ElseIf|EndIf|While|EndWhile|EndLoop|CallStat|For|To|Each|Case|Select|EndSelect|Do|Repeat|Until|(?:Up|Down)?Loop|From|Next|With|EndDo|CompileIf|Select|Switch|EndSwitch|Case|EndSelect|ElsePole|Pole|Case|ElseCase)\\b)",
 					"name": "keyword.control.exol"
 				},
 				{
