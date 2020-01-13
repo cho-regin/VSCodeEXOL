@@ -155,7 +155,7 @@
 							"match": "(?i:Construct|Extends)",
 							"name": "keyword.other.exol"
 						},
-						{					
+						{
 							"include": "#function"
 						},
 						{
@@ -292,6 +292,10 @@
 						"name": "comment.line.exol"
 					}
 				]
+			},
+			{
+				"match": "\\b(?i:Nothing|(?:Pi|E|False|True|Nan|TAB|LF|FF|PosInf|NegInf|TLn|Priority|CycleX?|Ln2|Ln10|lgE|SqRt[23])!)",
+				"name": "constant.language.exol"
 			}
 		]
 		},
@@ -315,7 +319,7 @@
 				}
 			]
 		},
-		"variables": {	
+		"variables": {
 			"patterns":[
 				{
 					"captures": {
@@ -335,7 +339,7 @@
 							"name": "variable.other.exol"
 						}
 					},
-					"match": "^\\s*(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*(?:<[^>]*>+)?))\\s*(?:\\(\\))?\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"match": "^\\s*(?i)(?:(RO)\\s+)?(?:(Ref)\\s+)?(?:([LXIRV$H])|([$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*(?:<[^>]*>+)?))\\s*(?:\\(\\))?\\s+([$a-zA-Z_\\x7f-\\xff][$a-zA-Z0-9_\\x7f-\\xff]*)",
 					"name": "meta.variable.other.exol"
 				},
 				{
@@ -352,10 +356,6 @@
 			"patterns": [
 				{
 					"include": "#strings-and-comments"
-				},
-				{
-					"match": "\\b(?i:False!|Nothing|True!|Nan!)",
-					"name": "constant.language.exol"
 				},
 				{
 					"match": "[\\w\\$]+!",
@@ -469,7 +469,7 @@
 							"include": "#code"
 						}
 					]
-				},		
+				},
 				{
 					"match": "\\b(?i:DefFunc|DefStat)",
 					"name": "keyword.other.exol"
