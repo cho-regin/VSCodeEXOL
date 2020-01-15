@@ -397,6 +397,14 @@
 					"name": "meta.variable.other.local.exol"
 				},
 				{
+					"match": "(?i:\\b[lxirh]\\b)",
+					"name": "support.type.exol"
+				},
+				{
+					"name": "support.type.exol",
+					"match": "(?<=\\W)(\\$)(?=\\W)"
+				},
+				{
 					"match": "(?i:set\\b)",
 					"name":"keyword.operator.exol"
 				},
