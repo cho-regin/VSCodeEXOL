@@ -141,7 +141,7 @@
 					"name": "meta.type.exol",
 					"patterns": [
 						{
-							"match": "(?i)(Extends)\\s*(\\w+)",
+							"match": "(?i)(Extends)\\s+(\\w+)",
 							"captures": {
 								"1": {
 									"name": "keyword.other.exol"
@@ -366,7 +366,7 @@
 					"name": "support.variable.exol"
 				},
 				{
-					"match": "\\b(?i:Dec.?|Inc.?|Exit(?:If)?|OpC|BrkTsk|Delay|Swap.?|PID|Cmp.?|Choose|Mid.?|Abs|Cv.|Edge.?|[RS][LXIH$SR][VB]|BIT|MaxIndex|Join[XI]|[RIH](?:Low|High))((?:\\b|(?=\\s|\\()))",
+					"match": "\\b(?i:Dec.?|Asc[B$]?|Len\\$?|Chr[B$]?|Inc.?|Exit(?:If)?|OpC|BrkTsk|Delay|Swap.?|PID|Cmp.?|Choose|Mid(?:Byte|Char|\\$)|Abs|Cv.|Edge.?|[RS][LXIH$SR][VB]|BIT|MaxIndex|Join[XI]|[RIH](?:Low|High))((?:\\b|(?=\\s|\\()))",
 					"name": "support.function.exol"
 				},
 				{
@@ -393,7 +393,7 @@
 							"name": "variable.other.exol"
 						}
 					},
-					"match": "(?i)(local)\\s+((?:ref\\s+)?[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"match": "(?i)(local)\\s+((?:ref\\s+)?[$a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)\\s+([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
 					"name": "meta.variable.other.local.exol"
 				},
 				{
@@ -417,7 +417,7 @@
 					"name": "support.type.exol"
 				},
 				{
-					"match": "([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*)",
+					"match": "([a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff\\$!]*)",
 					"name": "variable.other.exol"
 				}
 			]
