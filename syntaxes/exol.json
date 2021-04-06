@@ -370,7 +370,7 @@
 					"name": "support.function.exol"
 				},
 				{
-					"match": "\\b(?i:(?:End)?LockAccess|Set|From(?:Right|Left))\\b",
+					"match": "\\b(?i:(?:End)?LockAccess|Virtual|Set|From(?:Right|Left))\\b",
 					"name": "keyword.other.exol"
 				},
 				{
@@ -430,10 +430,13 @@
 							"name":"keyword.other.exol"
 						},
 						"2": {
+							"name":"keyword.other.exol"
+						},
+						"3": {
 							"name": "entity.name.function.exol"
 						}
 					},
-					"begin": "^\\s*(?i)(DefStat)\\s+([a-zA-Z_]\\w*)",
+					"begin": "^\\s*(?i)(?:(Virtual)\\s+)?(DefStat)\\s+([a-zA-Z_]\\w*)",
 					"end": "\\b(?i:EndStat)\\b",
 					"endCaptures" : {
 						"0" : {
@@ -457,10 +460,13 @@
 							"name":"keyword.other.exol"
 						},
 						"2": {
+							"name":"keyword.other.exol"
+						},
+						"3": {
 							"name": "entity.name.function.exol"
 						}
 					},
-					"begin": "^\\s*(?i)(DefFunc)\\s+([a-zA-Z_]\\w*)",
+					"begin": "^\\s*(?i)(?:(Virtual)\\s+)?(DefFunc)\\s+([a-zA-Z_]\\w*)",
 					"end": "\\b(?i:EndFunc)\\b",
 					"endCaptures" : {
 						"0" : {
